@@ -1,0 +1,47 @@
+{
+  "name": "udiff",
+  "version": "0.0.1",
+  "description": "Module used to work with unified diff files via a JS API.",
+  "main": "./src/index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/timsavery/node-udiff.git"
+  },
+  "keywords": [
+    "diff",
+    "udiff"
+  ],
+  "author": "Tim Savery <tim.savery@gmail.com>",
+  "license": "WTFPL",
+  "bugs": {
+    "url": "https://github.com/timsavery/node-udiff/issues"
+  },
+  "homepage": "https://github.com/timsavery/node-udiff",
+  "scripts": {
+    "lint": "./node_modules/.bin/jshint ./src ./test",
+    "test": "./node_modules/mocha/bin/mocha"
+  },
+  "devDependencies": {
+    "jshint": "2.4.1",
+    "mocha": "1.16.2",
+    "blanket": "1.1.5"
+  },
+  "jshintConfig": {
+    "boss": true,
+    "node": true,
+    "strict": true,
+    "white": true,
+    "smarttabs": true,
+    "maxlen": 180,
+    "newcap": false,
+    "undef": true,
+    "unused": true,
+    "onecase": true,
+    "indent": 2,
+    "predef": [
+      "describe",
+      "it",
+      "before"
+    ]
+  }
+}

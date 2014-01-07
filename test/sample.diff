@@ -1,0 +1,21 @@
+Index: index.js
+===================================================================
+--- index.js  (revision 171070)
++++ index.js  (working copy)
+@@ -1,8 +1,12 @@
+ var http = require('http');
+ 
+-http.createServer(function (req, res) {
+- res.writeHead(200, {'Content-Type': 'text/plain'});
+-  res.end('Hello World\n');
+-}).listen(1337, '127.0.0.1');
++var handleRequest = function (req, res) {
++ res.writeHead(200, {
++   'Content-Type': 'text/plain'
++ });
+ 
++ res.end('Hello World\n');
++
++http.createServer(handleRequest).listen(1337, '127.0.0.1');
++
+ console.log('Server running at http://127.0.0.1:1337/');
