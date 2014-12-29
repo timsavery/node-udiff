@@ -18,8 +18,8 @@
   },
   "homepage": "https://github.com/timsavery/node-udiff",
   "scripts": {
-    "lint": "./node_modules/.bin/jshint ./src ./test",
-    "test": "./node_modules/mocha/bin/mocha"
+    "lint": "node ./node_modules/.bin/jshint ./src ./test",
+    "test": "node ./node_modules/mocha/bin/mocha"
   },
   "devDependencies": {
     "jshint": "2.4.1",

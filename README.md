@@ -1,4 +1,4 @@
-## node-uuid
+## node-udiff
 
 ### Installation
 `npm install udiff`
