@@ -1,8 +1,11 @@
+var os = require('os');
 var fs = require('fs');
 
 exports.parseFromText = function(diffText, callback) {
   // each match indicates a separate file in the diff
-  var fileIndicies = [], fileEx = /(\w+: [\w\.\/]+\n=+)/g, fileMatch;
+  var fileMatch;
+  var fileIndicies = [];
+  var fileEx = new RegExp('(\\w+: [\\w\\.\\/]+' + os.EOL + '=+)', 'g');
   while ((fileMatch = fileEx.exec(diffText))) {
     fileIndicies.push(fileMatch.index);
   }
@@ -20,7 +23,7 @@ exports.parseFromText = function(diffText, callback) {
   var diffs = {};
   fileDiffs.forEach(function(fileDiffText) {    
     // pick out the file name
-    var firstLine = fileDiffText.split('\n')[0]
+    var firstLine = fileDiffText.split(os.EOL)[0]
       , filePath = firstLine.substring(firstLine.indexOf(':')+1, firstLine.length).trim();
 
     // pick out all the hunk markers
@@ -50,7 +53,7 @@ exports.parseFromText = function(diffText, callback) {
       var oldFilePropsParts = hunkPropsParts[0].split(',')
         , newFilePropsParts = hunkPropsParts[1].split(',');
 
-      var hunkLines = hunkContent.split('\n')
+      var hunkLines = hunkContent.split(os.EOL)
         , filteredHunkLines = [];
 
       hunkLines.forEach(function(line) {
