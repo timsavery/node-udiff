@@ -1,6 +1,6 @@
 {
   "name": "udiff",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Module used to work with unified diff files via a JS API.",
   "main": "./src/index.js",
   "repository": {
@@ -22,26 +22,8 @@
     "test": "node ./node_modules/mocha/bin/mocha"
   },
   "devDependencies": {
-    "jshint": "2.4.1",
-    "mocha": "1.16.2",
-    "blanket": "1.1.5"
-  },
-  "jshintConfig": {
-    "boss": true,
-    "node": true,
-    "strict": true,
-    "white": true,
-    "smarttabs": true,
-    "maxlen": 180,
-    "newcap": false,
-    "undef": true,
-    "unused": true,
-    "onecase": true,
-    "indent": 2,
-    "predef": [
-      "describe",
-      "it",
-      "before"
-    ]
+    "blanket": "1.1.5",
+    "jshint": "^2.7.0",
+    "mocha": "1.16.2"
   }
 }

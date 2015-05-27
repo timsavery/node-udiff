@@ -1,3 +1,5 @@
+'use strict';
+
 var os = require('os');
 var fs = require('fs');
 
@@ -23,8 +25,8 @@ exports.parseFromText = function(diffText, callback) {
   var diffs = {};
   fileDiffs.forEach(function(fileDiffText) {    
     // pick out the file name
-    var firstLine = fileDiffText.split(os.EOL)[0]
-      , filePath = firstLine.substring(firstLine.indexOf(':')+1, firstLine.length).trim();
+    var firstLine = fileDiffText.split(os.EOL)[0];
+    var filePath = firstLine.substring(firstLine.indexOf(':')+1, firstLine.length).trim();
 
     // pick out all the hunk markers
     var hunkIndicies = [], hunkEx = /@@/gi, hunkMatch;
@@ -33,31 +35,31 @@ exports.parseFromText = function(diffText, callback) {
     }
 
     // sanity check :: hunk markers come in pairs
-    if ((hunkIndicies.length % 2) != 0) {
+    if ((hunkIndicies.length % 2) !== 0) {
       callback(new Error('Sanity check failed: Hunk markers should come in pairs.'));
     }
 
     // parse out hunk properties
-    var hunks = []
-      , hunkMarkerLength = 2;
+    var hunks = [];
+    var hunkMarkerLength = 2;
 
     for (var i = 0; i+hunkMarkerLength <= hunkIndicies.length; i+=hunkMarkerLength) {
-      var startIdx = hunkIndicies[i]+hunkMarkerLength
-        , endIdx = hunkIndicies[i+1]
-        , hunkPropsParts = fileDiffText.substring(startIdx, endIdx).trim().split(' ');
+      var startIdx = hunkIndicies[i]+hunkMarkerLength;
+      var endIdx = hunkIndicies[i+1];
+      var hunkPropsParts = fileDiffText.substring(startIdx, endIdx).trim().split(' ');
 
-      var hunkContent = (endIdx < hunkIndicies.length-1) 
-        ? fileDiffText.substring(endIdx+hunkMarkerLength, hunkIndicies[endIdx+1]) 
+      var hunkContent = (endIdx < hunkIndicies.length-1) ?
+        fileDiffText.substring(endIdx+hunkMarkerLength, hunkIndicies[endIdx+1]) 
         : fileDiffText.substring(endIdx+hunkMarkerLength);
 
-      var oldFilePropsParts = hunkPropsParts[0].split(',')
-        , newFilePropsParts = hunkPropsParts[1].split(',');
+      var oldFilePropsParts = hunkPropsParts[0].split(',');
+      var newFilePropsParts = hunkPropsParts[1].split(',');
 
-      var hunkLines = hunkContent.split(os.EOL)
-        , filteredHunkLines = [];
+      var hunkLines = hunkContent.split(os.EOL);
+      var filteredHunkLines = [];
 
       hunkLines.forEach(function(line) {
-        if (line.length > 0 && line[0] != '\\') { // no blank empty lines or end of file marker
+        if (line.length > 0 && line[0] !== '\\') { // no blank empty lines or end of file marker
           filteredHunkLines.push({
             action: line[0].trim(),
             text: line.substring(1).trim()
@@ -72,7 +74,7 @@ exports.parseFromText = function(diffText, callback) {
         },
         new: {
           from: parseInt(newFilePropsParts[0].substring(1)),
-          numLines: parseInt(newFilePropsParts[1])
+          numLines: newFilePropsParts.length === 2 ? parseInt(newFilePropsParts[1]) : 1
         },
         lines: filteredHunkLines
       });
