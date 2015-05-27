@@ -15,11 +15,3 @@ udiff.parseFromFile('./test/sample.diff', function (err, result) {
   console.log(JSON.stringify(result, null, 2));
 });
 ```
-
-### License
-```text
-            DO WHATEVER THE FUCK YOU WANT, PUBLIC LICENSE
-   TERMS AND CONDITIONS FOR COPYING, DISTRIBUTION AND MODIFICATION
-
-            0. You just DO WHATEVER THE FUCK YOU WANT.
-```

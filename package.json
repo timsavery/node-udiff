@@ -12,7 +12,7 @@
     "udiff"
   ],
   "author": "Tim Savery <tim.savery@gmail.com>",
-  "license": "WTFPL",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/timsavery/node-udiff/issues"
   },
