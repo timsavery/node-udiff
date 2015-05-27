@@ -1,6 +1,6 @@
 {
   "name": "udiff",
-  "version": "0.0.2",
+  "version": "0.1.0",
   "description": "Module used to work with unified diff files via a JS API.",
   "main": "./src/index.js",
   "repository": {
